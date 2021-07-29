@@ -74,4 +74,4 @@ Same API as useInterval, but only runs once instead of continuously.
 
 ## License
 
-MIT © [raslan](https://github.com/raslan)
+MIT © [refolded](https://github.com/refolded)
