@@ -5,13 +5,13 @@
 ## Install
 
 ```bash
-npm install --save use-timing
+npm install --save @refolded/use-timing
 ```
 
 or with yarn
 
 ```bash
-yarn add use-timing
+yarn add @refolded/use-timing
 ```
 
 ## Usage
