@@ -1,6 +1,6 @@
 {
   "name": "@refolded/use-timing",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Modular React hooks for working with JavaScript timing functions.",
   "author": "refolded",
   "license": "MIT",
@@ -18,11 +18,9 @@
   "scripts": {
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
-    "build": "rollup -c && cp package.json README.md dist/",
+    "build": "rollup -c",
     "start": "rollup -c -w",
-    "prepare": "yarn run build",
-    "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
+    "publish": "npm publish --access=public"
   },
   "peerDependencies": {
     "react": "^16.9.0"
