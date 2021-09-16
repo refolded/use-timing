@@ -17,6 +17,7 @@ yarn add @refolded/use-timing
 ## Usage
 
 ### useInterval
+1:1 copy of setInterval with reactivity built-in.
 
 ```jsx
 import React, { useState } from 'react'
@@ -68,6 +69,51 @@ const App = () => {
   )
 }
 ```
+
+Demo:
+
+https://user-images.githubusercontent.com/24810123/133683266-96775040-adbc-41de-a246-bb945f2d89e0.mp4
+
+### useCycle
+Allows you to provide an array of delays and cycles between them linearly.
+
+```jsx
+import React, { useState } from 'react'
+import { useCycle } from 'use-timing'
+
+const App = () => {
+  const [count, setCount] = useState(0)
+
+  const [delay, setDelay] = useState(500)
+
+  const [start, stop, currentDelay] = useCycle(() => {
+    setCount(count - 1)
+  }, [delay, delay * 2, delay * 3])
+
+  return (
+    <div>
+      <h1>{count}</h1>
+      <h2>{currentDelay}ms</h2>
+      <div>
+        <button
+          onClick={start}
+        >
+          Start Count
+        </button>
+        <button
+          onClick={stop}
+        >
+          Stop Count
+        </button>
+      </div>
+    </div>
+  )
+}
+```
+Demo:
+
+https://user-images.githubusercontent.com/24810123/133683783-bb7b995e-7f5e-4c36-a75e-187daddbc52e.mp4
+
 
 ### useTimeout
 Same API as useInterval, but only runs once instead of continuously.
