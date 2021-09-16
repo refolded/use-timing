@@ -32,7 +32,7 @@ const Counter = () => {
       </div>
       <div className='grid grid-cols-2 gap-3 py-10'>
         <button
-          className='py-6 font-mono text-xl bg-green-800 px-10 rounded-full text-white font-bold leading-relaxed tracking-wider max-w-lg'
+          className='py-6 font-mono text-xl bg-green-800 px-10 rounded-full text-white font-bold leading-relaxed tracking-wider max-w-lg transform transition duration-200 hover:-translate-x-1 hover:-translate-y-1 focus:bg-gray-800'
           onClick={() => {
             start();
           }}
@@ -40,7 +40,7 @@ const Counter = () => {
           Start Count
         </button>
         <button
-          className='py-6 font-mono text-xl border-2 border-gray-400 px-10 rounded-full text-white font-bold leading-relaxed tracking-wider max-w-lg'
+          className='py-6 font-mono text-xl border-2 border-gray-400 px-10 rounded-full text-white font-bold leading-relaxed tracking-wider max-w-lg transform transition duration-200 hover:-translate-x-1 hover:-translate-y-1 focus:border-green-400'
           onClick={() => {
             stop();
           }}
