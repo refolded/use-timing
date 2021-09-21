@@ -14,6 +14,10 @@ or with yarn
 yarn add @refolded/use-timing
 ```
 
+## Demo
+
+https://use-timing.vercel.app/
+
 ## Usage
 
 ### useInterval
@@ -21,7 +25,7 @@ yarn add @refolded/use-timing
 
 ```jsx
 import React, { useState } from 'react'
-import { useInterval } from 'use-timing'
+import { useInterval } from '@refolded/use-timing'
 
 const App = () => {
   // Classic example with a counter
@@ -74,12 +78,50 @@ Demo:
 
 https://user-images.githubusercontent.com/24810123/133683266-96775040-adbc-41de-a246-bb945f2d89e0.mp4
 
+### useTimeout
+Same API as useInterval, but only runs once instead of continuously.
+
+### useCountdown
+Allows you to provide a delay and it will count down from that delay to 0.
+
+```jsx
+import React, { useState } from 'react'
+import { useCountdown } from '@refolded/use-timing'
+
+const App = () => {
+  const [count, setCount] = useState(0)
+
+  const [delay, setDelay] = useState(5000)
+
+  const [start, stop, remainingTime] = useCountdown(delay)
+
+  return (
+    <div>
+      <h1>{count}</h1>
+      <h2>{remainingTime}ms</h2>
+      <div>
+        <button
+          onClick={start}
+        >
+          Start Count
+        </button>
+        <button
+          onClick={stop}
+        >
+          Stop Count
+        </button>
+      </div>
+    </div>
+  )
+}
+```
+
 ### useCycle
 Allows you to provide an array of delays and cycles between them linearly.
 
 ```jsx
 import React, { useState } from 'react'
-import { useCycle } from 'use-timing'
+import { useCycle } from '@refolded/use-timing'
 
 const App = () => {
   const [count, setCount] = useState(0)
@@ -115,8 +157,46 @@ Demo:
 https://user-images.githubusercontent.com/24810123/133683783-bb7b995e-7f5e-4c36-a75e-187daddbc52e.mp4
 
 
-### useTimeout
-Same API as useInterval, but only runs once instead of continuously.
+### useInOut
+Allows you to provide 2 callback functions, one will be executed as soon as the timer begins and the other at the end.
+
+```jsx
+import React, { useState } from 'react'
+import { useInOut } from '@refolded/use-timing'
+
+const App = () => {
+  const [running, setRunning] = useState(false)
+
+  const [delay, setDelay] = useState(500)
+
+  const [start, stop] = useInOut(
+    [
+      // Will be executed immediately
+      () => { setRunning(true) },
+      // Will be executed after the duration of the timer
+      () => { setRunning(false) }
+    ]
+    , delay)
+
+  return (
+    <div>
+      <h1>{running}</h1>
+      <div>
+        <button
+          onClick={start}
+        >
+          Start Count
+        </button>
+        <button
+          onClick={stop}
+        >
+          Stop Count
+        </button>
+      </div>
+    </div>
+  )
+}
+```
 
 ## License
 
