@@ -1,14 +1,32 @@
 import React from "react";
 import "./App.css";
-import Counter from "./components/Counter";
-import Pomodoro from "./components/Pomodoro";
+import Counter from "./views/Counter";
+import Pomodoro from "./views/Pomodoro";
+import Quiz from "./views/Quiz";
+import Countdown from "./views/Countdown";
+
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const App = () => {
   return (
-    <div className='w-screen min-h-screen text-white p-12'>
-      <Counter />
-      <Pomodoro />
-    </div>
+    <Router>
+      <div className='text-white'>
+        <Switch>
+          <Route path='/cycle'>
+            <Pomodoro />
+          </Route>
+          <Route path='/inout'>
+            <Quiz />
+          </Route>
+          <Route path='/countdown'>
+            <Countdown />
+          </Route>
+          <Route path='/'>
+            <Counter />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 };
 
