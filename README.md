@@ -74,9 +74,6 @@ const App = () => {
 }
 ```
 
-Demo:
-
-https://user-images.githubusercontent.com/24810123/133683266-96775040-adbc-41de-a246-bb945f2d89e0.mp4
 
 ### useTimeout
 Same API as useInterval, but only runs once instead of continuously.
@@ -152,10 +149,6 @@ const App = () => {
   )
 }
 ```
-Demo:
-
-https://user-images.githubusercontent.com/24810123/133683783-bb7b995e-7f5e-4c36-a75e-187daddbc52e.mp4
-
 
 ### useInOut
 Allows you to provide 2 callback functions, one will be executed as soon as the timer begins and the other at the end.

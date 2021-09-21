@@ -1,6 +1,6 @@
 {
   "name": "@refolded/use-timing",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "description": "Modular React hooks for working with JavaScript timing functions.",
   "author": "refolded",
   "license": "MIT",
