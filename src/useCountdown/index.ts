@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
-import { useInterval } from "../useInterval/index";
+import { useState, useEffect } from 'react';
+import { useInterval } from '../useInterval/index';
 
-export const useCountdown = (inputDelay) => {
+export const useCountdown = (inputDelay: number) => {
   const [currentTime, setCurrentTime] = useState(inputDelay);
 
   const [start, stop] = useInterval(() => {
