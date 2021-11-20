@@ -1,7 +1,7 @@
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback, useEffect, useRef } from 'react';
 
-export const useTimeout = (callback, delay) => {
-  const savedCallback = useRef(null);
+export const useTimeout = (callback: Function, delay: number) => {
+  const savedCallback = useRef<Function | null>(null);
   const [running, setRunning] = useState(false);
   const [time, setTime] = useState(delay);
 
@@ -17,11 +17,13 @@ export const useTimeout = (callback, delay) => {
   }, [delay]);
 
   useEffect(() => {
-    const tick = () => savedCallback.current();
+    const tick = () => savedCallback.current?.();
+
     if (delay !== null && running) {
       const id = window.setTimeout(tick, time);
       return () => window.clearTimeout(id);
     }
+
     return () => {};
   }, [delay, time, running]);
 
