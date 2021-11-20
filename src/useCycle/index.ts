@@ -1,5 +1,5 @@
-import { useRef, useEffect, useCallback } from "react";
-import { useInterval } from "../useInterval/index";
+import { useRef, useEffect, useCallback } from 'react';
+import { useInterval } from '../useInterval/index';
 
 /**
  *
@@ -7,7 +7,7 @@ import { useInterval } from "../useInterval/index";
  * @param {Array<number>} array: the array of delays
  * @returns {number} newIndex: the new index in the given array, or 0 for single element arrays.
  */
-const computeIndex = (index, array) =>
+const computeIndex = (index: number, array: number[]) =>
   array.length > 1 ? (index + 1) % array.length : 0;
 
 /**
@@ -16,7 +16,7 @@ const computeIndex = (index, array) =>
  * @param {Array<number>} delays: Array of delays (in milliseconds) to cycle through.
  * @returns {Array} [start, stop, current delay].
  */
-export const useCycle = (callback, delays) => {
+export const useCycle = (callback: Function, delays: number[]) => {
   // Define the delay and its starting index
   const delayIndex = useRef(0);
   const delay = useRef(delays[delayIndex.current]);
