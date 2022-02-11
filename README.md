@@ -19,10 +19,6 @@ or with yarn
 yarn add @refolded/use-timing
 ```
 
-## Demo
-
-https://use-timing.vercel.app/
-
 ## Usage
 
 ### Important note
