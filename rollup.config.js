@@ -1,32 +1,32 @@
-import babel from 'rollup-plugin-babel'
-import commonjs from 'rollup-plugin-commonjs'
-import external from 'rollup-plugin-peer-deps-external'
-import resolve from 'rollup-plugin-node-resolve'
-import url from 'rollup-plugin-url'
-
-import pkg from './package.json'
+import commonjs from "rollup-plugin-commonjs";
+import resolve from "rollup-plugin-node-resolve";
+import external from "rollup-plugin-peer-deps-external";
+import typescript from "rollup-plugin-typescript2";
+import url from "rollup-plugin-url";
+import pkg from "./package.json";
 
 export default {
-  input: 'src/index.js',
+  input: "src/index.ts",
   output: [
     {
       file: pkg.main,
-      format: 'cjs',
-      sourcemap: true
+      format: "cjs",
+      sourcemap: true,
     },
     {
       file: pkg.module,
-      format: 'es',
-      sourcemap: true
-    }
+      format: "es",
+      sourcemap: true,
+    },
   ],
   plugins: [
     external(),
-    url({ exclude: ['**/*.svg'] }),
-    babel({
-      exclude: 'node_modules/**'
-    }),
+    url({ exclude: ["**/*.svg"] }),
     resolve(),
-    commonjs()
-  ]
-}
+    typescript({
+      rollupCommonJSResolveHack: true,
+      clean: true,
+    }),
+    commonjs(),
+  ],
+};
