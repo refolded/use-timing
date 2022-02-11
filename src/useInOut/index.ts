@@ -1,14 +1,20 @@
-import { useCallback, useRef, useState } from 'react';
-import { useTimeout } from '../useTimeout/index';
+import { useCallback, useRef, useState } from "react";
+import { useTimeout } from "../useTimeout/index";
 
 export const useInOut = (
   [firstCallback, secondCallback]: [Function, Function],
-  delay: number,
-) => {
+  delay: number
+): {
+  start: () => void;
+  stop: () => void;
+} => {
   const initialCallback = useRef<Function>(firstCallback);
   const endingCallback = useRef<Function>(secondCallback);
   const [internalDelay, setInternalDelay] = useState(delay);
-  const [timeoutStart] = useTimeout(endingCallback.current, internalDelay);
+  const { start: timeoutStart } = useTimeout(
+    endingCallback.current,
+    internalDelay
+  );
   const start = useCallback(() => {
     timeoutStart();
     setTimeout(initialCallback.current, 0);
@@ -16,5 +22,5 @@ export const useInOut = (
   const stop = useCallback(() => {
     setInternalDelay(0);
   }, []);
-  return [start, stop];
+  return { start, stop };
 };
