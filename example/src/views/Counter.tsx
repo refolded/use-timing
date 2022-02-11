@@ -1,13 +1,12 @@
+import { useInterval } from "@refolded/use-timing";
 import React, { useState } from "react";
-import { useInterval } from "use-timing";
-
-import Wrapper from "../components/Wrapper";
 import CubeIcon from "../components/CubeIcon";
+import Wrapper from "../components/Wrapper";
 
-const Counter = () => {
+const Counter = (): React.ReactElement => {
   const [delay, setDelay] = useState(1);
   const [count, setCount] = useState(0);
-  const [start, stop] = useInterval(() => {
+  const { start, stop } = useInterval(() => {
     setCount(count + 1);
   }, 1000 / delay);
 

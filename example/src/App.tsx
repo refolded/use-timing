@@ -1,11 +1,10 @@
-import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
+import Countdown from "./views/Countdown";
 import Counter from "./views/Counter";
+import Debounce from "./views/Debounce";
 import Pomodoro from "./views/Pomodoro";
 import Quiz from "./views/Quiz";
-import Countdown from "./views/Countdown";
-
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const App = () => {
   return (
@@ -20,6 +19,9 @@ const App = () => {
           </Route>
           <Route path='/countdown'>
             <Countdown />
+          </Route>
+          <Route path='/debounce'>
+            <Debounce />
           </Route>
           <Route path='/'>
             <Counter />

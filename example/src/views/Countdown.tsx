@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { useCountdown } from "use-timing";
-
+import { useCountdown } from "@refolded/use-timing";
 import { intervalToDuration } from "date-fns";
-
-import Wrapper from "../components/Wrapper";
+import React, { useEffect, useState } from "react";
 import CubeIcon from "../components/CubeIcon";
 import TimeComponent from "../components/TimeComponent";
+import Wrapper from "../components/Wrapper";
 
-const Countdown = () => {
+const Countdown = (): React.ReactElement => {
   const [delay, setDelay] = useState(25);
-  const [start, stop, currentTime] = useCountdown(delay * 60000);
+  const { start, stop, currentTime } = useCountdown(delay * 60000);
   const [duration, setDuration] = useState(
     intervalToDuration({
       start: new Date(),
@@ -31,9 +29,9 @@ const Countdown = () => {
       <h1>useCountdown</h1>
 
       <div className='grid grid-flow-col gap-5 text-center auto-cols-max'>
-        <TimeComponent value={duration.hours} label='hr' />
-        <TimeComponent value={duration.minutes} label='min' />
-        <TimeComponent value={duration.seconds} label='sec' />
+        <TimeComponent value={duration.hours as number} label='hr' />
+        <TimeComponent value={duration.minutes as number} label='min' />
+        <TimeComponent value={duration.seconds as number} label='sec' />
       </div>
 
       <div className='w-1/2 mt-12 form-control'>

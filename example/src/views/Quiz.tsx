@@ -1,10 +1,8 @@
-import React, { useState, useCallback } from "react";
-import { useInOut, useCountdown } from "use-timing";
-
-import { padStart } from "../utils/index";
-
-import Wrapper from "../components/Wrapper";
+import { useCountdown, useInOut } from "@refolded/use-timing";
+import React, { useCallback, useState } from "react";
 import CubeIcon from "../components/CubeIcon";
+import Wrapper from "../components/Wrapper";
+import { padStart } from "../utils/index";
 
 const answers = [`A. 3`, `B. 42`, `C. 45`, `D. I don't eat apples!`];
 
@@ -12,7 +10,7 @@ const Quiz = () => {
   const [delay] = useState(10000);
   const [started, setStarted] = useState(false);
   const [finished, setFinished] = useState(false);
-  const [startInOut, stopInOut] = useInOut(
+  const { start: startInOut, stop: stopInOut } = useInOut(
     [
       () => {
         setStarted(true);
@@ -24,7 +22,11 @@ const Quiz = () => {
     delay
   );
 
-  const [startCountdown, stopCountdown, remaining] = useCountdown(delay);
+  const {
+    start: startCountdown,
+    stop: stopCountdown,
+    currentTime: remaining,
+  } = useCountdown(delay);
 
   const start = useCallback(() => {
     startInOut();

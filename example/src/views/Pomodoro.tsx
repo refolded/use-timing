@@ -1,27 +1,27 @@
-import React, { useState, useEffect } from "react";
-import { useCycle, useCountdown } from "use-timing";
-
+import { useCountdown, useCycle } from "@refolded/use-timing";
 import { intervalToDuration } from "date-fns";
-
-import Wrapper from "../components/Wrapper";
+import React, { useEffect, useState } from "react";
 import CubeIcon from "../components/CubeIcon";
 import TimeComponent from "../components/TimeComponent";
+import Wrapper from "../components/Wrapper";
 
-const Pomodoro = () => {
+const Pomodoro = (): React.ReactElement => {
   const [workingTime, setWorkingTime] = useState(25);
   const [restingTime, setRestingTime] = useState(5);
   const [mode, setMode] = useState(true);
 
-  const [startPomodoro, stopPomodoro] = useCycle(() => {
+  const { start: startPomodoro, stop: stopPomodoro } = useCycle(() => {
     stopCounting();
     const newMode = !mode;
     setMode(newMode);
     startCounting();
   }, [workingTime * 60000, restingTime * 60000]);
 
-  const [startCounting, stopCounting, remainingTime] = useCountdown(
-    mode ? workingTime * 60000 : restingTime * 60000
-  );
+  const {
+    start: startCounting,
+    stop: stopCounting,
+    currentTime: remainingTime,
+  } = useCountdown(mode ? workingTime * 60000 : restingTime * 60000);
 
   const [duration, setDuration] = useState(
     intervalToDuration({
@@ -43,9 +43,8 @@ const Pomodoro = () => {
     <Wrapper>
       <h1>useCycle</h1>
       <div className='grid grid-flow-col gap-5 text-center auto-cols-max'>
-        <TimeComponent value={duration.hours} label='hr' />
-        <TimeComponent value={duration.minutes} label='min' />
-        <TimeComponent value={duration.seconds} label='sec' />
+        <TimeComponent value={duration.minutes as number} label='min' />
+        <TimeComponent value={duration.seconds as number} label='sec' />
       </div>
       <div className='w-1/2 mt-6 form-control'>
         <label className='label'>
