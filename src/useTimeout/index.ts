@@ -1,6 +1,12 @@
-import { useState, useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from "react";
 
-export const useTimeout = (callback: Function, delay: number) => {
+export const useTimeout = (
+  callback: Function,
+  delay: number
+): {
+  start: () => void;
+  stop: () => void;
+} => {
   const savedCallback = useRef<Function | null>(null);
   const [running, setRunning] = useState(false);
   const [time, setTime] = useState(delay);
@@ -27,5 +33,5 @@ export const useTimeout = (callback: Function, delay: number) => {
     return () => {};
   }, [delay, time, running]);
 
-  return [start, stop];
+  return { start, stop };
 };
