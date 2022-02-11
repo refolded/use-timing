@@ -1,6 +1,6 @@
 {
   "name": "@refolded/use-timing",
-  "version": "1.2.2",
+  "version": "2.0.0",
   "description": "Modular React hooks for working with JavaScript timing functions.",
   "author": "refolded",
   "license": "MIT",
@@ -72,7 +72,18 @@
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-node-resolve": "^4.0.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
+    "rollup-plugin-typescript2": "^0.31.1",
     "rollup-plugin-url": "^2.1.0",
     "typescript": "^4.5.2"
-  }
+  },
+  "keywords": [
+    "react",
+    "react-hooks",
+    "timing",
+    "timing-function",
+    "timing-function-hook",
+    "timing-function-react",
+    "debounce",
+    "countdown"
+  ]
 }
