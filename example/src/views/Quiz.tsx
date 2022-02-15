@@ -10,7 +10,11 @@ const Quiz = () => {
   const [delay] = useState(10000);
   const [started, setStarted] = useState(false);
   const [finished, setFinished] = useState(false);
-  const { start: startInOut, stop: stopInOut } = useInOut(
+  const {
+    start: startInOut,
+    stop: stopInOut,
+    reset,
+  } = useInOut(
     [
       () => {
         setStarted(true);
@@ -25,6 +29,7 @@ const Quiz = () => {
   const {
     start: startCountdown,
     stop: stopCountdown,
+    reset: resetCountdown,
     currentTime: remaining,
   } = useCountdown(delay);
 
@@ -61,6 +66,16 @@ const Quiz = () => {
             There are 45 apples in your basket. You take three apples out of the
             basket. How many apples are left?
           </h3>
+          <button
+            className='inline-flex gap-3 btn btn-lg btn-primary '
+            onClick={() => {
+              reset();
+              resetCountdown();
+            }}
+          >
+            <CubeIcon />
+            <span>Reset</span>
+          </button>
           {answers.map((answer) => (
             <button className='btn btn-primary btn-lg' onClick={stop}>
               {answer}

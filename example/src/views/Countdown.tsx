@@ -7,7 +7,7 @@ import Wrapper from "../components/Wrapper";
 
 const Countdown = (): React.ReactElement => {
   const [delay, setDelay] = useState(25);
-  const { start, stop, currentTime } = useCountdown(delay * 60000);
+  const { start, stop, reset, currentTime } = useCountdown(delay * 60000);
   const [duration, setDuration] = useState(
     intervalToDuration({
       start: new Date(),
@@ -65,6 +65,15 @@ const Countdown = (): React.ReactElement => {
         >
           <CubeIcon />
           <span>Stop</span>
+        </button>
+        <button
+          className='inline-flex gap-3 btn btn-primary btn-lg'
+          onClick={() => {
+            reset();
+          }}
+        >
+          <CubeIcon />
+          <span>Reset</span>
         </button>
       </div>
     </Wrapper>

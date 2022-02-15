@@ -10,7 +10,11 @@ const Pomodoro = (): React.ReactElement => {
   const [restingTime, setRestingTime] = useState(5);
   const [mode, setMode] = useState(true);
 
-  const { start: startPomodoro, stop: stopPomodoro } = useCycle(() => {
+  const {
+    start: startPomodoro,
+    stop: stopPomodoro,
+    skip,
+  } = useCycle(() => {
     stopCounting();
     const newMode = !mode;
     setMode(newMode);
@@ -89,6 +93,13 @@ const Pomodoro = (): React.ReactElement => {
         >
           <CubeIcon />
           <span>Stop</span>
+        </button>
+        <button
+          className='inline-flex gap-3 btn btn-primary btn-lg'
+          onClick={skip}
+        >
+          <CubeIcon />
+          <span>Skip</span>
         </button>
       </div>
     </Wrapper>

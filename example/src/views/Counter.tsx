@@ -6,7 +6,7 @@ import Wrapper from "../components/Wrapper";
 const Counter = (): React.ReactElement => {
   const [delay, setDelay] = useState(1);
   const [count, setCount] = useState(0);
-  const { start, stop } = useInterval(() => {
+  const { start, stop, reset } = useInterval(() => {
     setCount(count + 1);
   }, 1000 / delay);
 
@@ -45,6 +45,15 @@ const Counter = (): React.ReactElement => {
         >
           <CubeIcon />
           <span>Stop</span>
+        </button>
+        <button
+          className='inline-flex gap-3 btn btn-primary btn-lg'
+          onClick={() => {
+            reset();
+          }}
+        >
+          <CubeIcon />
+          <span>Reset</span>
         </button>
       </div>
     </Wrapper>
