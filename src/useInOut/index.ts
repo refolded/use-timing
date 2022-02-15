@@ -7,20 +7,25 @@ export const useInOut = (
 ): {
   start: () => void;
   stop: () => void;
+  reset: () => void;
 } => {
   const initialCallback = useRef<Function>(firstCallback);
   const endingCallback = useRef<Function>(secondCallback);
   const [internalDelay, setInternalDelay] = useState(delay);
-  const { start: timeoutStart } = useTimeout(
+
+  const { start: timeoutStart, reset } = useTimeout(
     endingCallback.current,
     internalDelay
   );
+
   const start = useCallback(() => {
     timeoutStart();
     setTimeout(initialCallback.current, 0);
   }, []);
+
   const stop = useCallback(() => {
     setInternalDelay(0);
   }, []);
-  return { start, stop };
+
+  return { start, stop, reset };
 };

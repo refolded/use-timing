@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useInterval } from "../useInterval/index";
 
 export const useCountdown = (
@@ -6,13 +6,23 @@ export const useCountdown = (
 ): {
   start: () => void;
   stop: () => void;
+  reset: () => void;
   currentTime: number;
 } => {
   const [currentTime, setCurrentTime] = useState(inputDelay);
 
-  const { start, stop } = useInterval(() => {
+  const {
+    start,
+    stop,
+    reset: resetInterval,
+  } = useInterval(() => {
     setCurrentTime(currentTime - 1000);
   }, 1000);
+
+  const reset = useCallback(() => {
+    resetInterval();
+    setCurrentTime(inputDelay);
+  }, [inputDelay]);
 
   useEffect(() => {
     if (currentTime === 0) stop();
@@ -22,5 +32,5 @@ export const useCountdown = (
     setCurrentTime(inputDelay);
   }, [inputDelay]);
 
-  return { start, stop, currentTime };
+  return { start, stop, reset, currentTime };
 };
