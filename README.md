@@ -2,6 +2,8 @@
 
 React hooks for working with JavaScript timing functions.
 
+Docs: https://use-timing-docs.vercel.app/
+
 ## What is it?
 Working with time is a common task in React applications and for some reason it is not natively intuitive to do so. To solve this, most React libraries provide a set of hooks that allow you to work with time, a lot of them including two most basic hooks from [this post by Dan Abramov](https://overreacted.io/making-setinterval-declarative-with-react-hooks/).
 
